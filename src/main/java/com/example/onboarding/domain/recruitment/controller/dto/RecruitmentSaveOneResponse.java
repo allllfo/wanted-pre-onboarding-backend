@@ -1,4 +1,4 @@
-package com.example.onboarding.domain.recruitment.dto;
+package com.example.onboarding.domain.recruitment.controller.dto;
 
 import com.example.onboarding.domain.recruitment.entity.Recruitment;
 import lombok.AllArgsConstructor;

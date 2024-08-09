@@ -33,4 +33,11 @@ public class Recruitment {
         this.description = description;
         this.stack = stack;
     }
+
+    public void update(String position, Integer reward, String description, String stack){
+        this.position = position;
+        this.reward = reward;
+        this.description = description;
+        this.stack = stack;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.onboarding.domain.recruitment.dto;
+package com.example.onboarding.domain.recruitment.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class RecruitmentSaveOneRequest {
-
-    private Integer companyId;
+public class RecruitmentUpdateOneRequest {
     private String position;
     private Integer reward;
     private String description;
