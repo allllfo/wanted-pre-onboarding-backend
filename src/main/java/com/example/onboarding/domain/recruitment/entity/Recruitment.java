@@ -20,16 +20,17 @@ public class Recruitment {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    private String name;
     private String position;
     private Integer reward;
+    private String description;
     private String stack;
 
     @Builder
-    public Recruitment(String name, String position, Integer reward, String stack) {
-        this.name = name;
+    public Recruitment(Company company, String position, Integer reward, String description, String stack) {
+        this.company = company;
         this.position = position;
         this.reward = reward;
+        this.description = description;
         this.stack = stack;
     }
 }
