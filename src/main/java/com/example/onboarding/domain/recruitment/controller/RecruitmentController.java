@@ -33,6 +33,11 @@ public class RecruitmentController {
     }
 
     //채용공고 삭제
+    @DeleteMapping("/{recruitmentId}")
+    public ResponseEntity<Void> deleteRecruitment(@PathVariable Integer recruitmentId){
+        recruitmentService.deleteRecruitment(recruitmentId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
     //채용공고 목록 조회
     @GetMapping("all")
@@ -50,4 +55,11 @@ public class RecruitmentController {
     }
 
     //채용상세페이지 조회
+    @GetMapping("/{recruitmentId}")
+    public ResponseEntity<RecruitmentDetailFindOneResponse> findRecruitmentDetail(@PathVariable Integer recruitmentId){
+        RecruitmentDetailFindOneResponse response = recruitmentService.findRecruitmentDetail(recruitmentId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
 }

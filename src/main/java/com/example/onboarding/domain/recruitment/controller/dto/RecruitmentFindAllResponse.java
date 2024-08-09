@@ -18,7 +18,6 @@ public class RecruitmentFindAllResponse {
     private String location;
     private String position;
     private Integer reward;
-    private String description;
     private String stack;
 
     public static RecruitmentFindAllResponse from(Recruitment recruitment){
@@ -29,7 +28,6 @@ public class RecruitmentFindAllResponse {
                 .location(recruitment.getCompany().getLocation())
                 .position(recruitment.getPosition())
                 .reward(recruitment.getReward())
-                .description(recruitment.getDescription())
                 .stack(recruitment.getStack())
                 .build();
     }

@@ -38,20 +38,8 @@ public class RecruitmentService {
     }
 
     public void updateRecruitment(RecruitmentUpdateOneRequest request, Integer recruitmentId) {
-        Recruitment recruitment = findRecruitmentById(recruitmentId);
-        recruitment.update(request.getPosition(), request.getReward(), request.getDescription(), request.getStack());
-    }
-
-
-
-    private Company findCompanyById(Integer companyId){
-        return companyRepository.findById(companyId)
-                .orElseThrow(()-> new CustomException(ErrorCode.NOT_FOUND_COMPANY));
-    }
-
-    private Recruitment findRecruitmentById(Integer recruitmentId){
-        return recruitmentRepository.findById(recruitmentId)
-                .orElseThrow(()-> new CustomException(ErrorCode.NOT_FOUND_RECRUITMENT));
+        Recruitment findRecruitment = findRecruitmentById(recruitmentId);
+        findRecruitment.update(request.getPosition(), request.getReward(), request.getDescription(), request.getStack());
     }
 
     public List<RecruitmentFindAllResponse> findAllRecruitments() {
@@ -70,4 +58,30 @@ public class RecruitmentService {
                 }).toList();
         return response;
     }
+
+    public RecruitmentDetailFindOneResponse findRecruitmentDetail(Integer recruitmentId) {
+        Recruitment findRecruitment = findRecruitmentById(recruitmentId);
+        List<Integer> anotherRecruitments = recruitmentRepository.findByCompanyId(findRecruitment.getCompany().getId());
+
+        return RecruitmentDetailFindOneResponse.of(findRecruitment, anotherRecruitments);
+    }
+
+
+    public void deleteRecruitment(Integer recruitmentId) {
+        Recruitment findRecruitment = findRecruitmentById(recruitmentId);
+        recruitmentRepository.delete(findRecruitment);
+    }
+
+
+    private Company findCompanyById(Integer companyId){
+        return companyRepository.findById(companyId)
+                .orElseThrow(()-> new CustomException(ErrorCode.NOT_FOUND_COMPANY));
+    }
+
+    private Recruitment findRecruitmentById(Integer recruitmentId){
+        return recruitmentRepository.findById(recruitmentId)
+                .orElseThrow(()-> new CustomException(ErrorCode.NOT_FOUND_RECRUITMENT));
+    }
+
+
 }

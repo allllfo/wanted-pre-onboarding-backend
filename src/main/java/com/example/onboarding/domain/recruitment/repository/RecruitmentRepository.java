@@ -1,5 +1,6 @@
 package com.example.onboarding.domain.recruitment.repository;
 
+import com.example.onboarding.domain.company.entity.Company;
 import com.example.onboarding.domain.recruitment.controller.dto.RecruitmentSearchAllResponse;
 import com.example.onboarding.domain.recruitment.entity.Recruitment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,7 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Intege
             "OR r.position LIKE %:searchTag% " +
             "OR r.stack LIKE %:searchTag%")
     List<Recruitment> findBySearchTag(@Param("searchTag") String searchTag);
+
+    @Query("SELECT r.id FROM Recruitment r WHERE r.company.id = :companyId")
+    List<Integer> findByCompanyId(@Param("companyId") Integer companyId);
 }

@@ -6,11 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class RecruitmentSearchAllResponse {
+public class RecruitmentDetailFindOneResponse {
     private Integer id;
     private String companyName;
     private String country;
@@ -18,9 +20,11 @@ public class RecruitmentSearchAllResponse {
     private String position;
     private Integer reward;
     private String stack;
+    private String description;
+    private List<Integer> anotherRecruitments;
 
-    public static RecruitmentSearchAllResponse from(Recruitment recruitment){
-        return RecruitmentSearchAllResponse.builder()
+    public static RecruitmentDetailFindOneResponse of(Recruitment recruitment, List<Integer> anotherRecruitments){
+        return RecruitmentDetailFindOneResponse.builder()
                 .id(recruitment.getId())
                 .companyName(recruitment.getCompany().getName())
                 .country(recruitment.getCompany().getCountry())
@@ -28,6 +32,8 @@ public class RecruitmentSearchAllResponse {
                 .position(recruitment.getPosition())
                 .reward(recruitment.getReward())
                 .stack(recruitment.getStack())
+                .description(recruitment.getDescription())
+                .anotherRecruitments(anotherRecruitments)
                 .build();
     }
 }
